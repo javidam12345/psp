@@ -74,6 +74,8 @@ int main() {
 
     execute_tree(A, getppid());
 
+    // MEMORY LEAKS :( :( :(
+
     return 0;
 }
 
