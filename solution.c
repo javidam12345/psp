@@ -43,3 +43,37 @@ void execute_tree(Node* root, pid_t parent_pid) {
 }
 
 
+// ejemplo de uso
+
+/*
+        A
+       / \
+      B   C
+         / \
+        D   E
+ */
+
+
+void example_func(pid_t my_pid, pid_t parent_pid) {
+    printf("My PID: %d, Parent PID: %d\n", my_pid, parent_pid);
+}
+
+
+int main() {
+    Node* A = create_node(example_func, 2);
+    Node* B = create_node(example_func, 0);
+    Node* C = create_node(example_func, 2);
+    Node* D = create_node(example_func, 0);
+    Node* E = create_node(example_func, 0);
+
+    A->children[0] = B;
+    A->children[1] = C;
+
+    C->children[0] = D;
+    C->children[1] = E;
+
+    execute_tree(A, getppid());
+
+    return 0;
+}
+
