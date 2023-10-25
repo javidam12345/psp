@@ -29,8 +29,11 @@ int main() {
         } while (read_bytes > 0);
         close(descriptor[0]);
     } else {
+        while (){
+            memset(buffer, 0, BUFFER_SIZE);
 
-        scanf("%s", str_buffer);
+            scanf("%s", str_buffer);
+        }
         close(descriptor[0]);
     }
     return 0;
