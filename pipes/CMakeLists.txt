@@ -3,4 +3,4 @@ project(pipes C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(pipes main2.c)
+add_executable(pipes main4.c)
