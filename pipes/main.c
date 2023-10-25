@@ -27,7 +27,7 @@ int main() {
         printf("I'm child process with pid: %d\n", current_pid);
         close(descriptor[1]);
         do {
-            memset(buffer, 0, BUFFER_SIZE);  // Limpiar el buffer
+            memset(buffer, 0, BUFFER_SIZE);
             readBytes = read(descriptor[0], buffer, BUFFER_SIZE - 1);
             if (readBytes > 0) {
                 printf("%s", buffer);

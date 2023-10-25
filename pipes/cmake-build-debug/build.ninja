@@ -49,8 +49,8 @@ cmake_ninja_workdir = /cygdrive/c/Users/FX506/Desktop/psp/pipes/cmake-build-debu
 
 build cmake_object_order_depends_target_pipes: phony || CMakeFiles/pipes.dir
 
-build CMakeFiles/pipes.dir/main.c.o: C_COMPILER__pipes_unscanned_Debug /cygdrive/c/Users/FX506/Desktop/psp/pipes/main.c || cmake_object_order_depends_target_pipes
-  DEP_FILE = CMakeFiles/pipes.dir/main.c.o.d
+build CMakeFiles/pipes.dir/main2.c.o: C_COMPILER__pipes_unscanned_Debug /cygdrive/c/Users/FX506/Desktop/psp/pipes/main2.c || cmake_object_order_depends_target_pipes
+  DEP_FILE = CMakeFiles/pipes.dir/main2.c.o.d
   FLAGS = -g -std=gnu11 -fdiagnostics-color=always
   OBJECT_DIR = CMakeFiles/pipes.dir
   OBJECT_FILE_DIR = CMakeFiles/pipes.dir
@@ -63,7 +63,7 @@ build CMakeFiles/pipes.dir/main.c.o: C_COMPILER__pipes_unscanned_Debug /cygdrive
 #############################################
 # Link the executable pipes.exe
 
-build pipes.exe: C_EXECUTABLE_LINKER__pipes_Debug CMakeFiles/pipes.dir/main.c.o
+build pipes.exe: C_EXECUTABLE_LINKER__pipes_Debug CMakeFiles/pipes.dir/main2.c.o
   FLAGS = -g
   LINK_FLAGS = -Wl,--enable-auto-import
   OBJECT_DIR = CMakeFiles/pipes.dir
