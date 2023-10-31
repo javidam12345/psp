@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
-project(pipes C)
+project(. C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(pipes main4.c)
+add_executable(. ../fifo/fifo11.c)
