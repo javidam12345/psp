@@ -2,20 +2,29 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <unistd.h>
-#include <stdlib.h>
-#include <time.h>
+
+
+void fact(int *num){
+    int res;
+    int temp = *num;
+    res = 1;
+    while (temp > 1){
+        res *= temp;
+        temp--;
+    }
+    *num = res;
+}
 
 
 int main()
 {
     int fd;
     int res;
-    srand(time(NULL)); // set semilla
-    int randomNumber = rand() % 10 + 1; // obtener ultimo elemento
 
-    // -------- Write
+    // -------- Read
 
     char *path = "fifo";
+
     if (access(path, F_OK) == -1)
     {
         if(mkfifo(path, 0666) == -1)
@@ -24,26 +33,6 @@ int main()
             return 1;
         }
     }
-
-    if ((fd = open(path, O_WRONLY)) == -1)
-    {
-        perror("open");
-        return 1;
-    }
-
-    if (write(fd, &randomNumber,sizeof(int)) == -1)
-    {
-        perror("write");
-        return 1;
-    }
-
-    if (close(fd))
-    {
-        perror("close");
-        return 1;
-    }
-
-    // --------------- READ
 
     if ((fd = open(path, O_RDONLY)) == -1)
     {
@@ -56,6 +45,27 @@ int main()
         perror("read");
         return 1;
     }
+    if (close(fd))
+    {
+        perror("close");
+        return 1;
+    }
+
+    // Write ------
+
+    if ((fd = open(path, O_WRONLY)) == -1)
+    {
+        perror("open");
+        return 1;
+    }
+
+    fact(&res);
+
+    if (write(fd, &res,sizeof(int)) == -1)
+    {
+        perror("write");
+        return 1;
+    }
 
     if (close(fd))
     {
@@ -63,6 +73,5 @@ int main()
         return 1;
     }
 
-    printf("Factorial de %d es %d", randomNumber, res);
     return 0;
 }

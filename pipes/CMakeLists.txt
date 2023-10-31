@@ -3,4 +3,4 @@ project(. C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(. ../fifo/fifo22.c)
+add_executable(. ../fifo/fifo21.c)
