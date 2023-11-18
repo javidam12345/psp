@@ -3,8 +3,15 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
+#define PATH1 "FIFO1"
+#define PATH2 "FIFO2"
 
 void fact(int *num){
+    if (*num == 0)
+    {
+        *num = 1;
+        return;
+    }
     int res;
     int temp = *num;
     res = 1;
@@ -23,18 +30,16 @@ int main()
 
     // -------- Read
 
-    char *path = "fifo";
-
-    if (access(path, F_OK) == -1)
+    if (access(PATH1, F_OK) == -1 && access(PATH2, F_OK) == -1)
     {
-        if(mkfifo(path, 0666) == -1)
+        if(mkfifo(PATH1, 0666) == -1 || mkfifo(PATH2, 0666) == -1)
         {
             perror("fifo");
             return 1;
         }
     }
 
-    if ((fd = open(path, O_RDONLY)) == -1)
+    if ((fd = open(PATH1, O_RDONLY)) == -1)
     {
         perror("open");
         return 1;
@@ -53,7 +58,7 @@ int main()
 
     // Write ------
 
-    if ((fd = open(path, O_WRONLY)) == -1)
+    if ((fd = open(PATH2, O_WRONLY)) == -1)
     {
         perror("open");
         return 1;

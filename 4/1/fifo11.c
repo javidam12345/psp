@@ -1,37 +1,38 @@
+#include <unistd.h>
+#include <sys/stat.h>
 #include <stdio.h>
 #include <fcntl.h>
-#include <sys/stat.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <time.h>
 
+#define PATH1 "FIFO1"
+#define PATH2 "FIFO2"
 
 int main()
 {
+
     int fd;
-    int res;
     srand(time(NULL)); // set semilla
-    int randomNumber = rand() % 10 + 1; // obtener ultimo elemento
+    int random_number = rand() % 10 + 1; // obtener ultimo elemento
 
-    // -------- Write
+    // write
 
-    char *path = "fifo";
-    if (access(path, F_OK) == -1)
+    if (access(PATH1, F_OK) == -1 && access(PATH2, F_OK) == -1)
     {
-        if(mkfifo(path, 0666) == -1)
+        if(mkfifo(PATH1, 0666) == -1 || mkfifo(PATH2, 0666) == -1)
         {
             perror("fifo");
             return 1;
         }
     }
 
-    if ((fd = open(path, O_WRONLY)) == -1)
+    if ((fd = open(PATH1, O_WRONLY)) == -1)
     {
         perror("open");
         return 1;
     }
 
-    if (write(fd, &randomNumber,sizeof(int)) == -1)
+    if (write(fd, &random_number,sizeof(int)) == -1)
     {
         perror("write");
         return 1;
@@ -43,13 +44,15 @@ int main()
         return 1;
     }
 
-    // --------------- READ
+    // read
 
-    if ((fd = open(path, O_RDONLY)) == -1)
+    if ((fd = open(PATH2, O_RDONLY)) == -1)
     {
         perror("open");
         return 1;
     }
+
+    int res;
 
     if ((read(fd, &res, sizeof(int))) == -1)
     {
@@ -63,7 +66,8 @@ int main()
         return 1;
     }
 
-    printf("Factorial de %d es %d", randomNumber, res);
-    unlink(path);
+    printf("Result of factorial of %d -> %d", random_number, res);
+    unlink(PATH1);
+    unlink(PATH2);
     return 0;
 }
