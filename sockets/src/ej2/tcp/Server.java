@@ -1,4 +1,4 @@
-package ej2;
+package ej2.tcp;
 
 
 import java.io.IOException;

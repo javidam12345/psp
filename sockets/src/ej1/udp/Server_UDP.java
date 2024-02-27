@@ -5,7 +5,6 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 
 public class Server_UDP {
 
@@ -37,7 +36,7 @@ public class Server_UDP {
 
 
 
-        } catch (IOException io) {
+        } catch (IOException ignored) {
 
         }
 

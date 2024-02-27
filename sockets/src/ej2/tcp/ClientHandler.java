@@ -1,4 +1,4 @@
-package ej2;
+package ej2.tcp;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,7 +16,7 @@ public class ClientHandler implements Runnable {
         objectInputStream = new ObjectInputStream(socket.getInputStream());
     }
 
-    private ResultInformation getInformationFromArray(int[] array) {
+    private static ResultInformation getInformationFromArray(int[] array) {
         int total = 0;
         int biggest = array[0];
         int smallest = array[0];
