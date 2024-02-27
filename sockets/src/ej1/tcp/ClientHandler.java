@@ -1,6 +1,5 @@
-package ej1;
+package ej1.tcp;
 
-import javax.xml.crypto.Data;
 import java.io.*;
 import java.net.Socket;
 
