@@ -1,4 +1,4 @@
-package ej3;
+package ej3.tcp;
 
 import java.io.IOException;
 import java.net.ServerSocket;
